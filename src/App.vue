@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <app-header></app-header>
+    <app-schedule></app-schedule>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import AppHeader from "@/components/AppHeader";
+import AppSchedule from "@/components/schedule/AppSchedule";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {AppSchedule, AppHeader},
+    created() {
+        this.$store.dispatch('setData').then(res => {
+            if (res !== '200')
+                return
+            if (!localStorage.getItem('selectedGroup')) {
+                const schedule = this.$store.state.data
+                const firstGroup = Object.keys(schedule)[0]
+                this.$store.commit('setGroup', firstGroup)
+            } else {
+                const group = localStorage.getItem('selectedGroup');
+                this.$store.commit('setGroup', group)
+            }
+        })
+
+    }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "assets/style/commons";
 </style>
