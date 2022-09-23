@@ -1,5 +1,6 @@
 <template>
     <app-header></app-header>
+    <app-filters></app-filters>
     <app-schedule></app-schedule>
 </template>
 
@@ -7,9 +8,10 @@
 
 import AppHeader from "@/components/AppHeader";
 import AppSchedule from "@/components/schedule/AppSchedule";
+import AppFilters from "@/components/AppFilters";
 export default {
     name: 'App',
-    components: {AppSchedule, AppHeader},
+    components: {AppFilters, AppSchedule, AppHeader},
     created() {
         this.$store.dispatch('setData').then(res => {
             if (res !== '200')

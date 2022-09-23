@@ -1,7 +1,7 @@
 export default {
     state: {
         selectedGroup: '',
-        groupNames: []
+        groupNames: [],
     },
     getters: {
         getScheduleByGroup(state, _, globalState) {

@@ -3,7 +3,7 @@
         <div class="line__inner" v-if="data">
             <p class="line__text line__number">{{ idx + 1 }}</p>
             <p class="line__text">{{ data.type ? data.type : '' }}</p>
-            <p class="line__text">{{ data.subgroup }}</p>
+            <p class="line__text">{{ data.subgroup ? data.subgroup : '1/2' }}</p>
             <p class="line__text">{{ time }}</p>
             <p class="line__text">{{ data.lesson }}</p>
             <p class="line__text">{{ data.cabinet }}</p>
@@ -31,7 +31,7 @@ export default {
             if (type === 'Лаб.') {
                 return '#008000'
             }
-            return ''
+            return 'grey'
         },
         currentLesson() {
             const currentDate = new Date()
