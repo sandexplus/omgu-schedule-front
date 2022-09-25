@@ -19,22 +19,20 @@
 export default {
     name: "RadioFilter",
     props: ['data', 'label'],
-    data() {
-        return {
-            active: null
+    computed: {
+        active() {
+            return this.$store.state.filters.subgroup ? this.$store.state.filters.subgroup : null
         }
     },
     methods: {
         itemClick(name) {
-            this.active = name;
             this.$store.commit('setSubgroup', name);
             localStorage.setItem('subgroup', name)
-        }
+        },
     },
     created() {
         if (localStorage.getItem('subgroup')) {
             this.$store.commit('setSubgroup', localStorage.getItem('subgroup'))
-            this.active = localStorage.getItem('subgroup')
         }
     }
 }
@@ -42,6 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 .radio {
+    align-self: flex-start;
     &__label {
         font-family: 'Inter';
         font-style: normal;

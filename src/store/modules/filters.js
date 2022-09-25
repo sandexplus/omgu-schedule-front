@@ -30,6 +30,14 @@ export default {
     mutations: {
         setSubgroup(state, payload) {
             state.subgroup = payload;
+            localStorage.setItem('subgroup', payload)
+        },
+        setShowAll(state) {
+            state.showAllSchedule = !state.showAllSchedule;
+        },
+        setChosenLesson(state, payload) {
+            state.chosenLesson = payload;
+            localStorage.setItem('chosenLesson', payload)
         }
     }
 }

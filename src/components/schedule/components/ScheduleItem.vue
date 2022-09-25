@@ -42,8 +42,9 @@ export default {
         },
         isToday() {
             const days = this.$store.state.days.daysOfWeek;
+            const index = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
             const arrayOfDaysValues = Object.values(days);
-            return arrayOfDaysValues[new Date().getDay()] === this.exactDayOfWeek
+            return arrayOfDaysValues[index] === this.exactDayOfWeek
         },
         filteredSchedule() {
 
@@ -79,7 +80,7 @@ export default {
                 return true;
             }
 
-            return this.dayData.filter(item => {
+            const filtered = this.dayData.filter(item => {
                 if (!item) return false;
                 if (this.showAllSchedule) return true;
                 if (!validateWeek(item.week)) return false;
@@ -88,6 +89,9 @@ export default {
 
                 return true;
             });
+            return filtered.sort((a, b) => {
+                return a.time.start.hours - b.time.start.hours
+            })
         },
     },
 }

@@ -44,11 +44,8 @@ export default {
             endDate.setHours(this.data.time.end.hours);
             endDate.setMinutes(this.data.time.end.minutes);
 
-            return startDate < currentDate && endDate > currentDate
+            return startDate < currentDate && endDate > currentDate && this.isToday
         }
-    },
-    methods: {
-
     },
 }
 </script>

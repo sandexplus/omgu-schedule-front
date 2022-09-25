@@ -3,7 +3,7 @@
         <div class="container">
             <div class="header__inner">
                 <h1 class="header__title">{{ group }}</h1>
-                <div class="header__selector">
+                <div class="header__selector" v-click-outside="closeSelector">
                     <button @click="showSelector" class="header__change-group">Сменить группу</button>
                     <group-selector
                         @handle-choose="closeSelector"
