@@ -27,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 .schedule {
     margin-top: 15px;
-    padding-bottom: 50px;
+    padding-bottom: 150px;
     &__inner {
         display: flex;
         flex-direction: column;

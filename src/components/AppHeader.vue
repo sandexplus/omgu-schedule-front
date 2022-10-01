@@ -51,7 +51,6 @@ export default {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: flex;
     align-items: center;
-    padding: 0 100px;
     &__selector {
         position: relative;
     }

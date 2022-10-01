@@ -44,6 +44,9 @@ export default {
         display: grid;
         grid-template-columns:  1fr 1fr 1fr 2fr 3fr 2fr 3fr;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        @media (max-width: 1000px) {
+            grid-template-columns: 1fr 1fr 2fr 3fr 2fr 3fr;
+        }
         & p {
             font-family: 'Inter';
             font-style: normal;
@@ -52,6 +55,11 @@ export default {
             line-height: 18px;
             color: #000000;
             padding: 16px 15px;
+            &:first-child {
+                @media (max-width: 1000px) {
+                    display: none;
+                }
+            }
         }
     }
 }
