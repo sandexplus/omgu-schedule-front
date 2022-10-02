@@ -25,7 +25,8 @@ export default {
         currentSemester: getCurrentSemester(),
         currentWeek: getCurrentWeek(),
         currentEvenOddWeek: getEvenOddWeek(),
-        showAllSchedule: false
+        showAllSchedule: false,
+        searchedString: ''
     },
     mutations: {
         setSubgroup(state, payload) {
@@ -38,6 +39,49 @@ export default {
         setChosenLesson(state, payload) {
             state.chosenLesson = payload;
             localStorage.setItem('chosenLesson', payload)
+        },
+        setSearchedString(state, payload) {
+            state.searchedString = payload;
+        }
+    },
+    actions: {
+        setSearchedString(context, data) {
+            context.commit('setSearchedString', data);
+            if (!data) {
+                context.commit('setSearchedData', null);
+                return;
+            }
+            let arr = {
+                'ПН': [],
+                'ВТ': [],
+                'СР': [],
+                'ЧТ': [],
+                'ПТ': [],
+                'СБ': [],
+            };
+            context.rootState.data.map(item => {
+                for (let i in item) {
+                    for (let j in item[i]) {
+                        for (let k in item[i][j]) {
+                            const val = item[i][j][k];
+                            if (!val) continue;
+                            const teacher = val.teacher.toLowerCase();
+                            const lesson = val.lesson.toLowerCase();
+                            const cabinet = val.cabinet.toLowerCase();
+
+                            if (teacher.includes(data.toLowerCase())
+                                || lesson.includes(data.toLowerCase())
+                                || cabinet.includes(data.toLowerCase())) {
+
+                                arr[j].push(val);
+                            }
+                        }
+                    }
+                }
+            })
+            context.commit('setSearchedData', arr);
+            // state.searchedString = payload.string;
+            // console.log(payload.rootState)
         }
     }
 }

@@ -8,11 +8,12 @@ export default createStore({
         data: [],
         number: 0,
         selectedData: null,
-        baseUrl: 'https://omgu-schedule.alexpl.site/'
+        baseUrl: 'https://omgu-schedule.alexpl.site/',
+        searchedData: null
     },
     getters: {},
     mutations: {
-        setSelectedData(state, payload) {
+        setSelectedData(state) {
             state.selectedData = state.data[state.number];
         },
         setData(state, payload) {
@@ -21,6 +22,9 @@ export default createStore({
         setNumber(state, payload) {
             state.number = payload;
             localStorage.setItem('selectedData', payload)
+        },
+        setSearchedData(state, payload) {
+            state.searchedData = payload;
         }
     },
     actions: {
@@ -30,7 +34,7 @@ export default createStore({
                 .then(data => data.count)
 
             for (let i = 0; i < await count; i++) {
-                const data = await fetch(`${context.state.baseUrl}data${i}.json`)
+                await fetch(`${context.state.baseUrl}data${i}.json`)
                     .then(res => res.json())
                     .then(data => {
                         context.commit('setData', data);

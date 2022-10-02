@@ -19,15 +19,14 @@ export default {
     components: {ShowAllFilter, DropdownFilter, RadioFilter},
     data() {
         return {
-            radioFilters: ['1', '2']
+            radioFilters: ['1', '2'],
         }
     },
     computed: {
         chosenLessons() {
             return this.$store.state.groups.chosenLessons;
         },
-    },
-
+    }
 }
 </script>
 

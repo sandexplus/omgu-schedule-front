@@ -18,6 +18,9 @@ export default {
             return this.$store.state.groups.selectedGroup
         },
         schedule() {
+            if (this.$store.state.searchedData) {
+                return this.$store.state.searchedData
+            }
             return this.$store.getters.getScheduleByGroup(this.group)
         }
     },
